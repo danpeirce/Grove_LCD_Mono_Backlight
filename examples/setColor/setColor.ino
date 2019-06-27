@@ -39,7 +39,7 @@ void setup()
 {
     Serial.begin(115200);
     // set up the LCD's number of columns and rows:
-    lcd.begin(16, 2);
+    lcd.begin(16, 2, 17, 16);
     // Print a message to the LCD.
     lcd.print("set cllor");
 }

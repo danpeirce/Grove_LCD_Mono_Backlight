@@ -87,7 +87,7 @@ byte armsUp[8] = {
 void setup() 
 {
 
-    lcd.begin(16, 2);
+    lcd.begin(16, 2, 17, 16);
  #if 1   
     // create a new character
     lcd.createChar(0, heart);

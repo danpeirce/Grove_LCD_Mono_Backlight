@@ -34,7 +34,7 @@ const int colorB = 0;
 void setup() 
 {
     // set up the LCD's number of columns and rows:
-    lcd.begin(16, 2);
+    lcd.begin(16, 2, 17, 16);
     
     lcd.setRGB(colorR, colorG, colorB);
     

@@ -29,7 +29,7 @@ rgb_lcd lcd;
 
 void setup(){
     // set up the LCD's number of columns and rows:
-    lcd.begin(16, 2);
+    lcd.begin(16, 2, 17, 16);
     // initialize the serial communications:
     Serial.begin(9600);
 }
