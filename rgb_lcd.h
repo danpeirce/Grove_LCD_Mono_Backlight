@@ -98,7 +98,7 @@ class rgb_lcd : public Print
 public:
   rgb_lcd();
 
-  void begin(uint8_t cols, uint8_t rows, uint8_t charsize = LCD_5x8DOTS);
+  void begin(uint8_t cols, uint8_t rows, int sdaPin=-1, int sclPin=-1, uint32_t frequency=0U, uint8_t charsize = LCD_5x8DOTS);
 
   void clear();
   void home();
