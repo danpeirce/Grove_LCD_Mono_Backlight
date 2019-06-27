@@ -1,4 +1,4 @@
-Grove - LCD RGB Backlight
+Grove - LCD RGB Backlight for ESP-32
 ---------------------------------------------------------
 
 ![Grove - LCD RGB Backlight](https://raw.githubusercontent.com/SeeedDocument/Grove_LCD_RGB_Backlight/master/images/intro.jpg)
@@ -6,12 +6,12 @@ Grove - LCD RGB Backlight
 
 [Grove - LCD RGB Backlight](https://www.seeedstudio.com/Grove-LCD-RGB-Backlight-p-1643.html)
 
+## This Version of the Grove Library was altered to work with the ESP32.
+
 Done with the tedious mono color backlight? This Grove - LCD RBG Backlight enables you to set the color to whatever you like via the simple and concise Grove interface. It takes I2C as the communication method with your microcontroller. The number of pins required for data exchange and backlight control shrinks from ~10 to 2, relieving IOs for other challenging tasks. In addition, Grove - LCD RGB Backlight supports user-defined characters. Want to get a love heart or another custom character? Just take advantage of this feature and design it!
 
-
 ## Usage:
-
-This is an Arudino Library. It include a .h file, a .cpp file and some examples. Through these examples, you can quickly master the use of Grove - LCD RGB Backlight.
+This is an Arudino Library, that can be used with the ESP32. It include a .h file, a .cpp file and some examples. Through these examples, you can quickly master the use of Grove - LCD RGB Backlight.
 
 The in the following, we will introduce some functions which are used very intuitively. 
 
@@ -19,9 +19,9 @@ The in the following, we will introduce some functions which are used very intui
 ### Initialization
 Before we use this lcd, we should initialize it. You can use this function:
 
-    lcd.begin(16, 2);
+    lcd.begin(16, 2, 17, 16);
 
-This means that this lcd has 16 columns and 2 rows.
+This means that this lcd has 16 columns and 2 rows and uses the I2C-Connection with pins 17 as SDA and pin 16 as SCL.
 
 
 ### Change Color of Backlight
