@@ -1,5 +1,5 @@
 #######################################
-# Syntax Coloring Map For Grove - Serial LCD GRB BackLight
+# Syntax Coloring Map For Grove - Serial LCD Mono BackLight
 #######################################
 
 #######################################

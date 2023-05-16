@@ -23,9 +23,9 @@
 */
 
 #include <Wire.h>
-#include "rgb_lcd.h"
+#include "mono_lcd.h"
 
-rgb_lcd lcd;
+mono_lcd lcd;
 
 const int colorR = 255;
 const int colorG = 0;

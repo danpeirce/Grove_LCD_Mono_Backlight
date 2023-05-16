@@ -1,5 +1,5 @@
 /*
-  rgb_lcd.cpp
+  mono_lcd.cpp
   2013 Copyright (c) Seeed Technology Inc.  All right reserved.
 
   Author:Loovee
@@ -34,7 +34,7 @@
 #include <inttypes.h>
 #include <Wire.h>
 
-#include "rgb_lcd.h"
+#include "mono_lcd.h"
 
 void i2c_send_byte(unsigned char dta)
 {
@@ -53,11 +53,11 @@ void i2c_send_byteS(unsigned char *dta, unsigned char len)
     Wire.endTransmission();                     // stop transmitting
 }
 
-rgb_lcd::rgb_lcd()
+mono_lcd::mono_lcd()
 {
 }
 
-void rgb_lcd::begin(uint8_t cols, uint8_t lines, int sdaPin, int sclPin, uint32_t frequency, uint8_t dotsize)
+void mono_lcd::begin(uint8_t cols, uint8_t lines, int sdaPin, int sclPin, uint32_t frequency, uint8_t dotsize)
 {
 
     Wire.begin(sdaPin, sclPin, frequency);
@@ -123,19 +123,19 @@ void rgb_lcd::begin(uint8_t cols, uint8_t lines, int sdaPin, int sclPin, uint32_
 }
 
 /********** high level commands, for the user! */
-void rgb_lcd::clear()
+void mono_lcd::clear()
 {
     command(LCD_CLEARDISPLAY);        // clear display, set cursor position to zero
     delayMicroseconds(2000);          // this command takes a long time!
 }
 
-void rgb_lcd::home()
+void mono_lcd::home()
 {
     command(LCD_RETURNHOME);        // set cursor position to zero
     delayMicroseconds(2000);        // this command takes a long time!
 }
 
-void rgb_lcd::setCursor(uint8_t col, uint8_t row)
+void mono_lcd::setCursor(uint8_t col, uint8_t row)
 {
 
     col = (row == 0 ? col|0x80 : col|0xc0);
@@ -146,74 +146,74 @@ void rgb_lcd::setCursor(uint8_t col, uint8_t row)
 }
 
 // Turn the display on/off (quickly)
-void rgb_lcd::noDisplay()
+void mono_lcd::noDisplay()
 {
     _displaycontrol &= ~LCD_DISPLAYON;
     command(LCD_DISPLAYCONTROL | _displaycontrol);
 }
 
-void rgb_lcd::display() {
+void mono_lcd::display() {
     _displaycontrol |= LCD_DISPLAYON;
     command(LCD_DISPLAYCONTROL | _displaycontrol);
 }
 
 // Turns the underline cursor on/off
-void rgb_lcd::noCursor()
+void mono_lcd::noCursor()
 {
     _displaycontrol &= ~LCD_CURSORON;
     command(LCD_DISPLAYCONTROL | _displaycontrol);
 }
 
-void rgb_lcd::cursor() {
+void mono_lcd::cursor() {
     _displaycontrol |= LCD_CURSORON;
     command(LCD_DISPLAYCONTROL | _displaycontrol);
 }
 
 // Turn on and off the blinking cursor
-void rgb_lcd::noBlink()
+void mono_lcd::noBlink()
 {
     _displaycontrol &= ~LCD_BLINKON;
     command(LCD_DISPLAYCONTROL | _displaycontrol);
 }
-void rgb_lcd::blink()
+void mono_lcd::blink()
 {
     _displaycontrol |= LCD_BLINKON;
     command(LCD_DISPLAYCONTROL | _displaycontrol);
 }
 
 // These commands scroll the display without changing the RAM
-void rgb_lcd::scrollDisplayLeft(void)
+void mono_lcd::scrollDisplayLeft(void)
 {
     command(LCD_CURSORSHIFT | LCD_DISPLAYMOVE | LCD_MOVELEFT);
 }
-void rgb_lcd::scrollDisplayRight(void)
+void mono_lcd::scrollDisplayRight(void)
 {
     command(LCD_CURSORSHIFT | LCD_DISPLAYMOVE | LCD_MOVERIGHT);
 }
 
 // This is for text that flows Left to Right
-void rgb_lcd::leftToRight(void)
+void mono_lcd::leftToRight(void)
 {
     _displaymode |= LCD_ENTRYLEFT;
     command(LCD_ENTRYMODESET | _displaymode);
 }
 
 // This is for text that flows Right to Left
-void rgb_lcd::rightToLeft(void)
+void mono_lcd::rightToLeft(void)
 {
     _displaymode &= ~LCD_ENTRYLEFT;
     command(LCD_ENTRYMODESET | _displaymode);
 }
 
 // This will 'right justify' text from the cursor
-void rgb_lcd::autoscroll(void)
+void mono_lcd::autoscroll(void)
 {
     _displaymode |= LCD_ENTRYSHIFTINCREMENT;
     command(LCD_ENTRYMODESET | _displaymode);
 }
 
 // This will 'left justify' text from the cursor
-void rgb_lcd::noAutoscroll(void)
+void mono_lcd::noAutoscroll(void)
 {
     _displaymode &= ~LCD_ENTRYSHIFTINCREMENT;
     command(LCD_ENTRYMODESET | _displaymode);
@@ -221,7 +221,7 @@ void rgb_lcd::noAutoscroll(void)
 
 // Allows us to fill the first 8 CGRAM locations
 // with custom characters
-void rgb_lcd::createChar(uint8_t location, uint8_t charmap[])
+void mono_lcd::createChar(uint8_t location, uint8_t charmap[])
 {
 
     location &= 0x7; // we only have 8 locations 0-7
@@ -238,7 +238,7 @@ void rgb_lcd::createChar(uint8_t location, uint8_t charmap[])
 }
 
 // Control the backlight LED blinking
-void rgb_lcd::blinkLED(void)
+void mono_lcd::blinkLED(void)
 {
     // blink period in seconds = (<reg 7> + 1) / 24
     // on/off ratio = <reg 6> / 256
@@ -246,7 +246,7 @@ void rgb_lcd::blinkLED(void)
     setReg(0x06, 0x7f);  // half on, half off
 }
 
-void rgb_lcd::noBlinkLED(void)
+void mono_lcd::noBlinkLED(void)
 {
     setReg(0x07, 0x00);
     setReg(0x06, 0xff);
@@ -255,14 +255,14 @@ void rgb_lcd::noBlinkLED(void)
 /*********** mid level commands, for sending data/cmds */
 
 // send command
-inline void rgb_lcd::command(uint8_t value)
+inline void mono_lcd::command(uint8_t value)
 {
     unsigned char dta[2] = {0x80, value};
     i2c_send_byteS(dta, 2);
 }
 
 // send data
-inline size_t rgb_lcd::write(uint8_t value)
+inline size_t mono_lcd::write(uint8_t value)
 {
 
     unsigned char dta[2] = {0x40, value};
@@ -270,7 +270,7 @@ inline size_t rgb_lcd::write(uint8_t value)
     return 1; // assume sucess
 }
 
-void rgb_lcd::setReg(unsigned char addr, unsigned char dta)
+void mono_lcd::setReg(unsigned char addr, unsigned char dta)
 {
     Wire.beginTransmission(RGB_ADDRESS); // transmit to device #4
     Wire.write(addr);
@@ -278,7 +278,7 @@ void rgb_lcd::setReg(unsigned char addr, unsigned char dta)
     Wire.endTransmission();    // stop transmitting
 }
 
-void rgb_lcd::setRGB(unsigned char r, unsigned char g, unsigned char b)
+void mono_lcd::setRGB(unsigned char r, unsigned char g, unsigned char b)
 {
     setReg(REG_RED, r);
     setReg(REG_GREEN, g);
@@ -293,7 +293,7 @@ const unsigned char color_define[4][3] =
     {0, 0, 255},                // blue
 };
 
-void rgb_lcd::setColor(unsigned char color)
+void mono_lcd::setColor(unsigned char color)
 {
     if(color > 3)return ;
     setRGB(color_define[color][0], color_define[color][1], color_define[color][2]);

@@ -29,13 +29,13 @@
 */
 
 
-#ifndef __RGB_LCD_H__
-#define __RGB_LCD_H__
+#ifndef __MONO_LCD_H__
+#define __MONO_LCD_H__
 
 #include <inttypes.h>
 #include "Print.h"
 
-// Device I2C Arress
+// Device I2C Address
 #define LCD_ADDRESS     (0x7c>>1)
 #define RGB_ADDRESS     (0xc4>>1)
 
@@ -92,11 +92,11 @@
 #define LCD_5x10DOTS 0x04
 #define LCD_5x8DOTS 0x00
 
-class rgb_lcd : public Print 
+class mono_lcd : public Print 
 {
 
 public:
-  rgb_lcd();
+  mono_lcd();
 
   void begin(uint8_t cols, uint8_t rows, int sdaPin=-1, int sclPin=-1, uint32_t frequency=0U, uint8_t charsize = LCD_5x8DOTS);
 
