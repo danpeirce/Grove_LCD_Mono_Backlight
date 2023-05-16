@@ -27,16 +27,10 @@
 
 mono_lcd lcd;
 
-const int colorR = 255;
-const int colorG = 0;
-const int colorB = 0;
-
 void setup() 
 {
     // set up the LCD's number of columns and rows:
-    lcd.begin(16, 2, 17, 16);
-    
-    lcd.setRGB(colorR, colorG, colorB);
+    lcd.begin(16, 2, 4, 5);  // gpio 4 and 5 are close to 3.3 volt pins
     
     // Print a message to the LCD.
     lcd.print("hello, world!");

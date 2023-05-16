@@ -23,9 +23,9 @@
 */
 
 #include <Wire.h>
-#include "rgb_lcd.h"
+#include "mono_lcd.h"
 
-rgb_lcd lcd;
+mono_lcd lcd;
 
 // make some custom characters:
 byte heart[8] = {
@@ -87,7 +87,7 @@ byte armsUp[8] = {
 void setup() 
 {
 
-    lcd.begin(16, 2, 17, 16);
+    lcd.begin(16, 2, 4, 5);
  #if 1   
     // create a new character
     lcd.createChar(0, heart);
@@ -111,12 +111,13 @@ void setup()
     lcd.write(1);
 }
 
+int delayTime = 600;
 void loop() 
 {
     // read the potentiometer on A0:
-    int sensorReading = analogRead(A0);
+    //int sensorReading = analogRead(A0);
     // map the result to 200 - 1000:
-    int delayTime = map(sensorReading, 0, 1023, 200, 1000);
+    
     // set the cursor to the bottom row, 5th position:
     lcd.setCursor(4, 1);
     // draw the little man, arms down:
