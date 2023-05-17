@@ -5,7 +5,7 @@
   Author:Loovee
   2013-9-18
 
-  Grove - Serial LCD RGB Backlight demo.
+  Grove - Serial LCD Mono Backlight demo.
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -23,15 +23,15 @@
 */
 
 #include <Wire.h>
-#include "rgb_lcd.h"
+#include "mono_lcd.h"
 
-rgb_lcd lcd;
+mono_lcd lcd;
 
 
 void setup()
 {
     // set up the LCD's number of columns and rows:
-    lcd.begin(16, 2, 17, 16);
+    lcd.begin(16, 2, 4, 5);  // use gpio 4 and 5
 }
 
 void loop()

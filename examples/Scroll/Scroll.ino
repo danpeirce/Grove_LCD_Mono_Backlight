@@ -5,7 +5,7 @@
   Author:Loovee
   2013-9-18
 
-  Grove - Serial LCD RGB Backlight demo.
+  Grove - Serial LCD Mono Backlight demo.
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -23,13 +23,13 @@
 */
 
 #include <Wire.h>
-#include "rgb_lcd.h"
+#include "mono_lcd.h"
 
-rgb_lcd lcd;
+mono_lcd lcd;
 
 void setup() {
     // set up the LCD's number of columns and rows:
-    lcd.begin(16, 2, 17, 16);
+    lcd.begin(16, 2, 4, 5);
     // Print a message to the LCD.
     lcd.print("hello, world!");
     delay(1000);
@@ -42,7 +42,7 @@ void loop() {
         // scroll one position left:
         lcd.scrollDisplayLeft();
         // wait a bit:
-        delay(150);
+        delay(300);
     }
 
     // scroll 29 positions (string length + display length) to the right
@@ -51,7 +51,7 @@ void loop() {
         // scroll one position right:
         lcd.scrollDisplayRight();
         // wait a bit:
-        delay(150);
+        delay(300);
     }
 
     // scroll 16 positions (display length + string length) to the left
@@ -60,7 +60,7 @@ void loop() {
         // scroll one position left:
         lcd.scrollDisplayLeft();
         // wait a bit:
-        delay(150);
+        delay(300);
     }
 
     // delay at the end of the full loop:

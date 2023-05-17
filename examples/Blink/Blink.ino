@@ -23,15 +23,15 @@
 */
 
 #include <Wire.h>
-#include "rgb_lcd.h"
+#include "mono_lcd.h"
 
-rgb_lcd lcd;
+mono_lcd lcd;
 
 
 void setup() 
 {
     // set up the LCD's number of columns and rows:
-    lcd.begin(16, 2, 17, 16);
+    lcd.begin(16, 2, 4, 5);
 
     // Print a message to the LCD.
     lcd.print("hello, world!");

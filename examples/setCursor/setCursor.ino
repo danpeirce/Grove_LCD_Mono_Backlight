@@ -5,7 +5,7 @@
   Author:Loovee
   2013-9-18
 
-  Grove - Serial LCD RGB Backlight demo.
+  Grove - Serial LCD Mono Backlight demo.
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -23,9 +23,9 @@
 */
 
 #include <Wire.h>
-#include "rgb_lcd.h"
+#include "mono_lcd.h"
 
-rgb_lcd lcd;
+mono_lcd lcd;
 
 const int numRows = 2;
 const int numCols = 16;
@@ -33,18 +33,18 @@ const int numCols = 16;
 void setup() 
 {
     // set up the LCD's number of columns and rows:
-    lcd.begin(numCols,numRows);
+    lcd.begin(numCols,numRows, 4, 5);  // and gpio pins 4 and 5
 }
 
 void loop() {
     // loop from ASCII 'a' to ASCII 'z':
     for (int thisLetter = 'a'; thisLetter <= 'z'; thisLetter++) {
         // loop over the columns:
-        for (int thisCol = 0; thisCol < numRows; thisCol++) {
+        for (int thisRow = 0; thisRow < numRows; thisRow++) {
             // loop over the rows:
-            for (int thisRow = 0; thisRow < numCols; thisRow++) {
+            for (int thisCol = 0; thisCol < numCols; thisCol++) {
                 // set the cursor position:
-                lcd.setCursor(thisRow,thisCol);
+                lcd.setCursor(thisCol,thisRow);
                 // print the letter:
                 lcd.write(thisLetter);
                 delay(200);
