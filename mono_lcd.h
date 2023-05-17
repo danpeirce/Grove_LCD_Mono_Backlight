@@ -39,7 +39,7 @@
 #define LCD_ADDRESS     (0x7c>>1)
 #define RGB_ADDRESS     (0xc4>>1)
 
-
+/*
 // color define 
 #define WHITE           0
 #define RED             1
@@ -48,7 +48,7 @@
 
 #define REG_RED         0x04        // pwm2
 #define REG_GREEN       0x03        // pwm1
-#define REG_BLUE        0x02        // pwm0
+#define REG_BLUE        0x02        // pwm0 */
 
 #define REG_MODE1       0x00
 #define REG_MODE2       0x01
@@ -123,12 +123,12 @@ public:
   void command(uint8_t);
   
   // color control
-  void setRGB(unsigned char r, unsigned char g, unsigned char b);               // set rgb
-  void setPWM(unsigned char color, unsigned char pwm){setReg(color, pwm);}      // set pwm
+  //void setRGB(unsigned char r, unsigned char g, unsigned char b);               // set rgb
+  //void setPWM(unsigned char color, unsigned char pwm){setReg(color, pwm);}      // set pwm
   
-  void setColor(unsigned char color);
-  void setColorAll(){setRGB(0, 0, 0);}
-  void setColorWhite(){setRGB(255, 255, 255);}
+  //void setColor(unsigned char color);
+  //void setColorAll(){setRGB(0, 0, 0);}
+  //void setColorWhite(){setRGB(255, 255, 255);}
 
   // blink the LED backlight
   void blinkLED(void);

@@ -118,7 +118,7 @@ void mono_lcd::begin(uint8_t cols, uint8_t lines, int sdaPin, int sclPin, uint32
     // 0010 0000 -> 0x20  (DMBLNK to 1, ie blinky mode)
     setReg(REG_MODE2, 0x20);
     
-    setColorWhite();
+    //setColorWhite();
 
 }
 
@@ -267,7 +267,7 @@ inline size_t mono_lcd::write(uint8_t value)
 
     unsigned char dta[2] = {0x40, value};
     i2c_send_byteS(dta, 2);
-    return 1; // assume sucess
+    return 1; // assume success
 }
 
 void mono_lcd::setReg(unsigned char addr, unsigned char dta)
@@ -278,6 +278,7 @@ void mono_lcd::setReg(unsigned char addr, unsigned char dta)
     Wire.endTransmission();    // stop transmitting
 }
 
+/*
 void mono_lcd::setRGB(unsigned char r, unsigned char g, unsigned char b)
 {
     setReg(REG_RED, r);
@@ -298,3 +299,5 @@ void mono_lcd::setColor(unsigned char color)
     if(color > 3)return ;
     setRGB(color_define[color][0], color_define[color][1], color_define[color][2]);
 }
+*/
+
